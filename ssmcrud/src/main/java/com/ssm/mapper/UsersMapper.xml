@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.dao.UsersMapper" >
+  <resultMap id="BaseResultMap" type="com.ssm.domain.Users" >
+    <id column="sid" property="sid" jdbcType="INTEGER" />
+    <result column="sname" property="sname" jdbcType="VARCHAR" />
+    <result column="sage" property="sage" jdbcType="INTEGER" />
+    <result column="ssex" property="ssex" jdbcType="VARCHAR" />
+    <result column="saddr" property="saddr" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sid, sname, sage, ssex, saddr
+  </sql>
+  
+  <select id="search" resultMap="BaseResultMap" parameterType="String">
+  	select <include refid="Base_Column_List" /> from users
+  	where sname like #{keyword}
+  </select>
+  
+  <select id="selectUsers" resultMap="BaseResultMap">
+  	select <include refid="Base_Column_List" /> from users
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from users
+    where sid = #{sid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from users
+    where sid = #{sid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ssm.domain.Users" >
+    insert into users (sid, sname, sage, 
+      ssex, saddr)
+    values (#{sid,jdbcType=INTEGER}, #{sname,jdbcType=VARCHAR}, #{sage,jdbcType=INTEGER}, 
+      #{ssex,jdbcType=VARCHAR}, #{saddr,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssm.domain.Users" >
+    insert into users
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sid != null" >
+        sid,
+      </if>
+      <if test="sname != null" >
+        sname,
+      </if>
+      <if test="sage != null" >
+        sage,
+      </if>
+      <if test="ssex != null" >
+        ssex,
+      </if>
+      <if test="saddr != null" >
+        saddr,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sid != null" >
+        #{sid,jdbcType=INTEGER},
+      </if>
+      <if test="sname != null" >
+        #{sname,jdbcType=VARCHAR},
+      </if>
+      <if test="sage != null" >
+        #{sage,jdbcType=INTEGER},
+      </if>
+      <if test="ssex != null" >
+        #{ssex,jdbcType=VARCHAR},
+      </if>
+      <if test="saddr != null" >
+        #{saddr,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.domain.Users" >
+    update users
+    <set >
+      <if test="sname != null" >
+        sname = #{sname,jdbcType=VARCHAR},
+      </if>
+      <if test="sage != null" >
+        sage = #{sage,jdbcType=INTEGER},
+      </if>
+      <if test="ssex != null" >
+        ssex = #{ssex,jdbcType=VARCHAR},
+      </if>
+      <if test="saddr != null" >
+        saddr = #{saddr,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sid = #{sid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssm.domain.Users" >
+    update users
+    set sname = #{sname,jdbcType=VARCHAR},
+      sage = #{sage,jdbcType=INTEGER},
+      ssex = #{ssex,jdbcType=VARCHAR},
+      saddr = #{saddr,jdbcType=VARCHAR}
+    where sid = #{sid,jdbcType=INTEGER}
+  </update>
+</mapper>

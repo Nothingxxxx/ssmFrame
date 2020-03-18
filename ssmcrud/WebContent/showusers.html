@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+	<!-- 导航栏  -->
+
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+					aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">主页</a>
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+					<li><a href="#">Link</a></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">Dropdown <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Action</a></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else here</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#">Separated link</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#">One more separated link</a></li>
+						</ul></li>
+				</ul>
+				<form class="navbar-form navbar-left">
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="Search" id="search_input">
+					</div>
+					<button type="button" class="btn btn-default" id="search_button">搜索</button>
+				</form>
+				<ul class="nav navbar-nav navbar-right">
+					<li data-toggle="modal" data-target="#exampleModal"><a
+						href="#">新增</a></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">管理 <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">删除</a></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else here</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#">Separated link</a></li>
+						</ul></li>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
+	<!-- 导航结束  -->
+
+	<!-- 表格 -->
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<td>姓名</td>
+				<td>年龄</td>
+				<td>性别</td>
+				<td>地址</td>
+				<td>操作</td>
+			</tr>
+		</thead>
+
+		<tbody id="tablebody">
+
+		</tbody>
+	</table>
+	<!-- 表格结束 -->
+
+	<!-- 分页开始 -->
+	<nav aria-label="Page navigation">
+		<ul class="pagination">
+			<!--         <li><a href="#" aria-label="Previous"> <span -->
+			<!--                 aria-hidden="true">&laquo;</span> -->
+			<!--         </a></li> -->
+			<!--         <li><a href="#">1</a></li> -->
+			<!--         <li><a href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span> -->
+			<!--         </a></li> -->
+		</ul>
+	</nav>
+	<!-- 分页结束 -->
+
+	<!-- 插入功能模态框 -->
+
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="exampleModalLabel">New Message</h4>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label for="message-text" class="control-label">姓名</label> <input
+								type="text" class="form-control" id="name">
+						</div>
+
+						<div class="form-group">
+							<label for="recipient-name" class="control-label">年龄</label> <input
+								type="text" class="form-control" id="age">
+						</div>
+
+						<div class="form-group">
+							<label for="message-text" class="control-label">性別</label> <input
+								type="text" class="form-control" id="sex">
+						</div>
+
+						<div class="form-group">
+							<label for="message-text" class="control-label">地址</label> <input
+								type="text" class="form-control" id="address">
+						</div>
+
+					</form>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal"
+						id="insert_close">关闭</button>
+					<button type="button" class="btn btn-primary" id="insert_submit">提交</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--  -->
+
+	<div class="modal fade" id="updateUsers" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="exampleModalLabel">New Message</h4>
+				</div>
+				<div class="modal-body">
+					<form>
+
+						<input type="text" id="id" hidden="hidden">
+
+						<div class="form-group">
+							<label for="message-text" class="control-label">姓名</label> <input
+								type="text" class="form-control" id="updatename">
+						</div>
+
+						<div class="form-group">
+							<label for="recipient-name" class="control-label">年龄</label> <input
+								type="text" class="form-control" id="updateage">
+						</div>
+
+						<div class="form-group">
+							<label for="message-text" class="control-label">性別</label> <input
+								type="text" class="form-control" id="updatesex">
+						</div>
+
+						<div class="form-group">
+							<label for="message-text" class="control-label">地址</label> <input
+								type="text" class="form-control" id="updateaddress">
+						</div>
+
+					</form>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal"
+						id="update_close">关闭</button>
+					<button type="button" class="btn btn-primary" id="update_submit">提交</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+
+<script type="text/javascript">
+
+	$(function() {
+		//获取数据，将数据传入 tbody 中
+		get_page_data(1);
+	});
+
+	//定位提交按钮，点击提交，调用insert_users()
+	$("#insert_submit").click(function() {
+		insert_users();
+	});
+
+	$("#update_submit").click(function() {
+		update();
+	});
+
+	$("#search_button").click(function(){
+		var keyword = $("#search_input").val();
+		location.href = "searchResult.html?keyword="+keyword;
+	});
+	
+	
+	function insert_users() {
+		var name = $("#name").val();
+		var age = $("#age").val();
+		var sex = $("#sex").val();
+		var address = $("#address").val();
+		$.ajax({
+			method : "POST",
+			url : "insert.do",
+			data : {
+				"sname" : name,
+				"sage" : age,
+				"ssex" : sex,
+				"saddr" : address
+			},
+			success : function(data) {
+				$("#insert_close").click();
+				get_page_list(data);
+				users_page(data);
+			}
+		});
+	}
+
+	function get_page_data(page) {
+		$.ajax({
+			method : "GET",
+			url : "showusers.do",
+			data : "page=" + page,
+			success : function(data) {
+				//处理数据
+				get_page_list(data);
+				//处理分页
+				users_page(data);
+			},
+		});
+	}
+
+	function get_page_list(data) {
+		var data_body = $("#tablebody");
+        data_body.empty();
+        //循环data.list，
+        $.each(data.list,function (index, item) {
+            var table_tr = $("<tr></tr>")
+            var sid = item.sid;
+            var sname = item.sname;
+            var sage = item.sage;
+            var ssex = item.ssex;
+            var saddr = item.saddr;
+
+            var td_sid = $("<td hidden='hidden'></td>").append(sid);
+            var td_sname = $("<td></td>").append(sname);
+            var td_sage = $("<td></td>").append(sage);
+            var td_ssex = $("<td></td>").append(ssex);
+            var td_saddr = $("<td></td>").append(saddr);
+            var td_opition = $("<td></td>");
+            
+//定义删除按钮：
+           	var td_opition_delete=$("<button type=\"button\" class=\"btn btn-danger btn-xs\"></button>").append("删除");
+           	td_opition_delete.click(function(){
+           		/*	点击删除按钮，调用deleteUser方法，
+           			并传入被删除user的sid，和所在页面
+           		*/
+           		deleteUsers(sid,data.pageNum);
+           	})
+           	
+//修改按钮：	
+            var td_opition_update=$("<button data-toggle=\"modal\" data-target=\"#updateUsers\" type=\"button\" class=\"btn btn-info btn-xs\"></button>").append("修改");
+            td_opition_update.click(function(){
+            	update_users(sid,sname,sage,ssex,saddr,data.pageNum);
+            })
+           	
+           	
+            td_opition.append(td_opition_delete);
+            td_opition.append(td_opition_update);
+
+            var delete_logo=$("<span class='glyphicon glyphicon-trash'></span>");
+            td_opition_delete.append(delete_logo);
+            var update_logo=$("<span class='glyphicon glyphicon-pencil'></span>");
+            td_opition_update.append(update_logo);
+            
+            
+            table_tr.append(td_sid);
+            table_tr.append(td_sname);
+            table_tr.append(td_sage);
+            table_tr.append(td_ssex);
+            table_tr.append(td_saddr);
+            table_tr.append(td_opition);
+
+            data_body.append(table_tr);
+        });
+	}
+
+	function users_page(data) {
+		var page_ul = $(".pagination");
+		page_ul.empty();
+		var page_pre = $("<li><a href=\"#\" aria-label=\"Previous\"> <span aria-hidden=\"true\">&laquo;</span></a></li>");
+
+		if (data.isFirstPage) {
+			page_pre.addClass("disabled");
+		}
+
+		page_pre.click(function() {
+			get_page_data(data.prePage);
+		});
+
+		page_ul.append(page_pre);
+
+		$.each(data.navigatepageNums, function(index, item) {
+			var page_li = $("<li></li>").append($("<a></a>").append(item));
+			page_ul.append(page_li);
+
+			page_li.click(function() {
+				get_page_data(item);
+			});
+
+			if (data.pageNum == item) {//data.pageNum表示当前页
+				page_li.addClass("active");
+			}
+			;
+		});
+
+		var page_next = $("<li><a href=\"#\" aria-label=\"Next\"> <span aria-hidden=\"true\">&raquo;</span></a></li>");
+
+		if (data.isLastPage) {
+			page_next.addClass("disabled");
+		}
+		page_next.click(function() {
+			get_page_data(data.nextPage);
+		});
+
+		page_ul.append(page_next);
+	}
+
+	function deleteUsers(sid, page) {
+		$.ajax({
+			method : "GET",
+			//通过url调用controller中deleteUserBuId方法
+			url : "delete.do",
+			data : "sid=" + sid + "&page=" + page,//传参
+			success : function(data) {//回调函数
+				//处理数据
+				get_page_list(data);
+				//处理分页
+				users_page(data);
+			},
+		});
+	}
+
+	function update_users(id, name, age, sex, address, page) {
+		//把数据库中数据放入到模态框中：
+		$("#id").val(id);
+		$("#updatename").val(name);
+		$("#updateage").val(age);
+		$("#updatesex").val(sex);
+		$("#updateaddress").val(address);
+	}
+
+	//update方法：修改模态框中内容
+	function update() {
+		var id = $("#id").val();
+		var name = $("#updatename").val();
+		var age = $("#updateage").val();
+		var sex = $("#updatesex").val();
+		var address = $("#updateaddress").val();
+		$.ajax({
+			method : "POST",
+			url : "update.do",
+			data : {
+				"sid" : id,
+				"sname" : name,
+				"sage" : age,
+				"ssex" : sex,
+				"saddr" : address
+			},
+			success : function(data) {
+				$("#update_close").click();
+				get_page_list(data);//处理数据
+				users_page(data);//进行分页
+			}
+		});
+	}
+</script>
+
+</html>
